@@ -1,0 +1,292 @@
+<!-- page content -->
+    <div class="">
+      <div class="page-title">
+        <!-- <div class="title_left">
+          <h3>General Elements</h3>
+        </div> -->
+
+        <div class="title_right">
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Posted Insentif</h2>
+              <div class="clearfix"></div>
+            </div>
+             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                <label>Bulan:</label>
+                <input type="hidden" id="incentiveparam" ng-model="form.incentiveparam" class="form-control">
+                <select id="bulan" ng-model="form.bulan" class="form-control">
+                  <option value="1">Januari</option>
+                  <option value="2">Februari</option>
+                  <option value="3">Maret</option>
+                  <option value="4">April</option>
+                  <option value="5">Mei</option>
+                  <option value="6">Juni</option>
+                  <option value="7">Juli</option>
+                  <option value="8">Agustus</option>
+                  <option value="9">September</option>
+                  <option value="10">Oktober</option>
+                  <option value="11">November</option>
+                  <option value="12">Desember</option>
+
+                </select>
+              </div>
+
+              <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                <label>Tahun:</label>
+                <input id="tahun" type="text" placeholder="Tahun" ng-model="form.tahun" class="form-control">
+              </div>
+
+              <div class="col-md-6 col-sm-12 col-xs-12 form-group">                
+                <button type="button" ng-click="SearchBulanTahun(form.bulan, form.tahun)" class="btn btn-default" style="margin-top:24px;">
+                  Search
+                </button>               
+                <a onclick="window.location.href=site_url+'/exportexcel/'+$('#bulan').val()+'-'+$('#tahun').val()"><button style="margin-top:24px;" class="btn btn-warning">Export Excel</button></a>
+              </div>              
+
+            <div class="x_content">
+
+             
+
+              <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                  <li role="presentation" class="active"><a href="#tab_content1" target="_self" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Karyawan Insentif (Interpolasi)</a>
+                  </li>
+                  <li role="presentation" class=""><a href="#tab_content4" target="_self" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Karyawan Insentif (Forward Chaining)</a>
+                  </li>
+                  <li role="presentation" class=""><a href="#tab_content2" target="_self" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Portion Of Slice</a>
+                  </li>
+                  <li role="presentation" class=""><a href="#tab_content3" target="_self" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Portion Of Block</a>
+                  </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                  <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                    <div class="col-lg-12 margin-tb">
+                        <div class="pull-right" style="padding-top:30px">
+                            <div class="box-tools" style="display:inline-table">
+                              <div class="input-group">
+
+                                  <input type="text" class="form-control input-sm ng-valid ng-dirty" placeholder="Ketik Nama / NIK Karyawan" ng-change="searchInsentif(searchText, form.bulan, form.tahun)" ng-model="searchText" name="table_search" title="" tooltip="" data-original-title="Min character length is 3">
+                                  <span class="input-group-addon">Cari Otomatis</span>
+                              </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="x_panel">
+                        <div class="x_title">
+                          <h2>Insentif Bulan {{bulan}} Tahun {{tahun}} </h2>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                          <div style="overflow-x: auto;">                            
+                            <table class="table table-hover" style="font-size: 14px">
+                              <thead>
+                                <tr>
+                                    <th width="5px">NO.</th>
+                                    <th width="30px">EMPLOYEE</th>
+                                    <th width="20px">POSITION</th>
+                                    <th width="20px">GROUP</th>
+                                    <th width="20px">SHIFT</th>
+                                    <th width="20px">BLOCK</th>
+                                    <th width="20px">SLICE</th>
+                                    <th width="20px">BOX HANDLE</th>
+                                    <th width="35px">STATUS INSENTIF</th>
+                                    <th width="35px">SLIP INSENTIF</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr ng-repeat="value in showPosting">
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ value.POSTING_INCENTIVE_NAME }} ({{value.POSTING_INCENTIVE_NIK}})</td>
+                                    <td>{{ value.POSITION_NAME }}</td>
+                                    <td>{{ value.GROUP_NAME }}</td>
+                                    <td>{{ value.SHIFT_NAME }}</td>
+                                    <td>{{ value.BLOCK_NAME }}</td>
+                                    <td>{{ value.SLICE_NAME }}</td>
+                                    <td>{{ value.BAE_BOX_HANDLE }}</td>
+                                    <td>
+                                      <span ng-if="(value.BAE_BOX_HANDLE < 500 && value.POSTING_INCENTIVE_BLOCK == '1') || value.POSTING_INCENTIVE_BLOCK == '4'" class="label label-danger">Tidak Berhak Insentif</span>
+                                      <span ng-if="(value.BAE_BOX_HANDLE >= 500 && value.POSTING_INCENTIVE_BLOCK == '1') || value.POSTING_INCENTIVE_BLOCK == '2' || value.POSTING_INCENTIVE_BLOCK == '3'" class="label label-success">Berhak Insentif</span>
+                                    </td>
+                                    <td>
+                                        <button data-toggle="tooltip" class="btn btn-info btn-xs" ng-click="downloadSlip(value)">Download Slip</button>
+                                    </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="x_panel">
+                        <div class="x_title">
+                          <h2>Portion Of Slice Insentif Bulan {{bulan}} Tahun {{tahun}} </h2>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                  <th>NO.</th>
+                                  <th>Selisih Per Slice</th>
+                                  <th>Block</th>
+                                  <th>Slice</th>
+                                  <th>Jumlah Orang</th>
+                                  <th>Coefficient of upper value</th>
+                                  <th>Bobot</th>                                  
+                                  <th>Simulation Kue Per Slice</th>
+                                  <th>Flat Distributed</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="value in showPortionOfSlice">
+                                  <td>{{ $index + 1 }}</td>
+                                  <td>{{ value.POS_DIFF_PER_SLICE }} %</td>
+                                  <td>{{ value.BLOCK_ID }}</td>
+                                  <td>{{ value.SLICE_ID }}</td>
+                                  <td>{{ value.POS_HEADACOUNT_PER_SLICE }} Orang</td>
+                                  <td>{{ value.POS_COEFFICIENT_UPPER_VALUE }}</td>
+                                  <td>{{ value.POS_BOBOT }}</td>
+                                  <td>{{ value.POS_KUE_PER_SLICE }}</td>
+                                  <td>{{ value.POS_NOM_FLAT_DIST_BLOCK_I }}</td>
+                                  
+                              </tr>
+                            </tbody>
+                          </table>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="x_panel">
+                        <div class="x_title">
+                          <h2>Portion Of Slice Insentif Bulan {{bulan}} Tahun {{tahun}} </h2>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                  <th>NO.</th>
+                                  <th>Diff Per Block</th>
+                                  <th>Headcount per Block</th>
+                                  <th>Block</th>
+                                  <th>Kue Per Block</th>                                  
+                                  <th>Different Nominal</th>
+                                  <th>Block Composition</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="value in showPortionOfBlock">
+                                  <td>{{ $index + 1 }}</td>
+                                  <td>{{ value.POB_DIFF_PER_BLOCK }}</td>
+                                  <td>{{ value.HEADACOUNT_PER_BLOCK }} Orang</td>
+                                  <td>{{ value.BLOCK_ID }}</td>
+                                  <td>{{ value.POB_KUE_PER_BLOCK }}</td>
+                                  <td>{{ value.POB_DIFF_NOMINAL }}</td>
+                                  <td>{{ value.Block_Composition }} %</td>
+                                  
+                              </tr>
+                            </tbody>
+                          </table>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="home-tab">
+                    <div class="col-lg-12 margin-tb">
+                        <div class="pull-right" style="padding-top:30px">
+                            <div class="box-tools" style="display:inline-table">
+                              <div class="input-group">
+
+                                  <input type="text" class="form-control input-sm ng-valid ng-dirty" placeholder="Ketik Nama / NIK Karyawan" ng-change="searchInsentif(searchText, form.bulan, form.tahun)" ng-model="searchText" name="table_search" title="" tooltip="" data-original-title="Min character length is 3">
+                                  <span class="input-group-addon">Cari Otomatis</span>
+                              </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="x_panel">
+                        <div class="x_title">
+                          <h2>Insentif Bulan {{bulan}} Tahun {{tahun}} </h2>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                          <div style="overflow-x: auto;">                            
+                            <table class="table table-hover" style="font-size: 10px">
+                              <thead>
+                                <tr>
+                                    <th width="5px">NO.</th>
+                                    <th width="30px">EMPLOYEE</th>
+                                    <th width="20px">POSITION</th>
+                                    <th width="20px">GROUP</th>
+                                    <th width="20px">SHIFT</th>
+                                    <th width="20px">BLOCK</th>
+                                    <th width="20px">SLICE</th>
+                                    <th width="20px">BOX HANDLE</th>
+                                    <th width="35px">INCENTIVE-FLAT</th>
+                                    <th width="35px">INCENTIVE-BOX</th>
+                                    <th width="35px">INCENTIVE-OJEKER</th>
+                                    <th width="35px">INCENTIVE-THRESHOLD </th>
+                                    <th width="35px">INCENTIVE-TOTAL</th>
+                                    <th width="20px">(%) POTONGAN</th>
+                                    <th width="35px">JUMLAH POTONGAN</th>
+                                    <th width="35px">PENGEMBALIAN INSENTIF</th>
+                                    <th width="35px">INCENTIVE-FINAL</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr ng-repeat="value in showPosting">
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ value.POSTING_INCENTIVE_NAME }} ({{value.POSTING_INCENTIVE_NIK}})</td>
+                                    <td>{{ value.POSITION_NAME }}</td>
+                                    <td>{{ value.GROUP_NAME }}</td>
+                                    <td>{{ value.SHIFT_NAME }}</td>
+                                    <td>{{ value.BLOCK_NAME }}</td>
+                                    <td>{{ value.SLICE_NAME }}</td>
+                                    <td>{{ value.BAE_BOX_HANDLE }}</td>
+                                    <td>{{ value.POSTING_INCENTIVE_FLAT }}</td>
+                                    <td>{{ value.POSTING_INCENTIVE_BOX }}</td>
+                                    <td>{{ value.POSTING_INCENTIVE_OJEKER }}</td>
+                                    <td>{{ value.POSTING_INCENTIVE_THRESHOLD }}</td>
+                                    <td>{{ value.POSTING_INCENTIVE_FINAL }}</td>
+                                    <td>{{ value.POSTING_INCENTIVE_PERCENT_CUT }} <strong>%</strong></td>
+                                    <td>{{ value.POSTING_INCENTIVE_COST_CUT }}</td>
+                                    <td>{{ value.POSTING_INCENTIVE_DIST_CUT }}</td>
+                                    <td>{{ value.POSTING_INCENTIVE_FINAL_AFTER_CUT }}</td>
+                                    
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+  
+<!-- /page content -->

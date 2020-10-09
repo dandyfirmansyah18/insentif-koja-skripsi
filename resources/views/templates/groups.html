@@ -1,0 +1,118 @@
+<div class="">
+<div class="page-title">
+
+
+</div>
+
+<div class="clearfix"></div>
+<div class="row">
+  <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h3>Group List</h3>
+        </div>
+        <div class="pull-right" style="padding-top:30px">
+            <div class="box-tools" style="display:inline-table">
+              <div class="input-group">
+                  <input type="text" class="form-control input-sm ng-valid ng-dirty" placeholder="Ketik Group" ng-change="searchDB()" ng-model="searchText" name="table_search" title="" tooltip="" data-original-title="Min character length is 3">
+                  <span class="input-group-addon">Cari Otomatis</span>
+              </div>
+            </div>
+            
+        </div>
+  </div>  
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Group Table</h2>
+        &nbsp&nbsp&nbsp&nbsp&nbsp
+        <button class="btn btn-success" ng-click="tambah_group()" data-toggle="modal" data-target="#create-user">Tambah Group Baru</button>
+
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Group</th>
+                <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr dir-paginate="value in data | itemsPerPage:10" total-items="totalItems">
+                <td>{{ current_page + $index + 1 }}</td>
+                <td>{{ value.GROUP_NAME }}</td>
+                <td>
+                    <button data-toggle="modal" class="btn btn-info btn-xs" ng-click="edit(value.GROUP_ID)" data-target="#edit-data"><i class="fa fa-pencil"></i></button>
+                    <button data-toggle="tooltip" class="btn btn-danger btn-xs" ng-click="remove(value,$index)"><i class="fa fa-close"></i></button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+        <dir-pagination-controls class="pull-right" on-page-change="pageChanged(newPageNumber)" template-url="templates/dirPagination.html" ></dir-pagination-controls>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  
+</div>
+<!-- Create Modal -->
+<div class="modal fade" id="create-user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" name="addItem" role="form" ng-submit="saveAdd()">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Buat Group</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Nama Group : </strong>
+                            <div class="form-group">
+                                <input ng-model="form.GROUP_NAME" type="text" placeholder="Nama Group" name="group" class="form-control" required />
+                            </div>                          
+                        </div>                       
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-disabled="addItem.$invalid" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="edit-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" name="editItem" role="form" ng-submit="saveEdit()">
+                <input ng-model="form.GROUP_ID" type="hidden" />
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Tag</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                               <input ng-model="form.GROUP_NAME" type="text" placeholder="group" name="group" class="form-control" required />
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-disabled="editItem.$invalid" class="btn btn-primary create-crud">Simpan</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

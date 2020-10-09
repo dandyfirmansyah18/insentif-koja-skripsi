@@ -1,0 +1,1273 @@
+  <style type="text/css">
+    #div_upload_potongan {
+      width: 42%;
+      padding: 10px;
+      /*text-align: center;*/
+      border: 3px dashed #ccc; 
+    }
+
+    /*#incentive_value_atas {
+      width: 42%;
+      padding: 10px;
+      /*text-align: center;
+      border: 3px dashed #ccc; 
+    }*/
+
+  </style>
+  <div class="">
+    <div class="page-title">
+      <!-- <div class="title_left">
+        <h3>Form Wizards</h3>
+      </div> -->
+
+      <div class="title_right">        
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Input Insentif</h2>
+            <br>
+            <br>            
+            <br>
+            <div id="incentive_value_atas">              
+              <div class="col-md-1 col-sm-1 col-xs-6">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Incentive Value</label>                    
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-8">
+                <input type="text" id="total_insentif" format="number" ng-model="form.total_insentif" name="total_insentif" required="required" readonly="" class="form-control col-md-7 col-xs-12">
+                <!-- <input type="hidden" id="total_insentif_clean" ng-model="form.total_insentif_clean" name="total_insentif_clean" readonly="" class="form-control col-md-7 col-xs-12"> -->
+              </div>
+
+              <div class="col-md-1 col-sm-1 col-xs-6">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">QCC/box</label>                    
+              </div>
+              <div class="col-md-2 col-sm-2 col-xs-4">
+                <input type="text" format="number" ng-model="AP_COST_BOX_QCC" required="required" readonly="" class="form-control col-md-7 col-xs-12">                
+              </div>
+
+              <div class="col-md-1 col-sm-1 col-xs-6">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">RTG/box</label>                    
+              </div>
+              <div class="col-md-2 col-sm-2 col-xs-4">
+                <input type="text" format="number" ng-model="AP_COST_BOX_RTG" required="required" readonly="" class="form-control col-md-7 col-xs-12">                
+              </div>
+
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+
+            <!-- Smart Wizard -->
+            
+            <div id="wizard" class="form_wizard wizard_horizontal">
+              <ul class="wizard_steps" style="margin-left: -23px;">
+                <li>
+                  <a>
+                    <span class="step_no" ng-style="form_style1">1</span>
+                    <span class="step_descr">
+                        Step 1<br />
+                        <small>Set Incentive Param</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <span class="step_no" ng-style="form_style2">2</span>
+                    <span class="step_descr">
+                        Step 2<br />
+                        <small>Set Box Adjusment&nbsp;&nbsp;</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <span class="step_no" ng-style="form_style3">3</span>
+                    <span class="step_descr">
+                        Step 3<br />
+                        <small>Input Box Adjusment</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <span class="step_no" ng-style="form_style4">4</span>
+                    <span class="step_descr">
+                        Step 4<br />
+                        <small>Input Potongan (%)</small> 
+                    </span>
+                  </a>
+                </li>
+
+                <li>
+                  <a>
+                    <span class="step_no" ng-style="form_style5">5</span>
+                    <span class="step_descr">
+                        Step 5<br />
+                        <small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Preview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                    </span>
+                  </a>
+                </li>
+
+              </ul>
+              <div ng-show="form_step1 == 'show'">
+                <h2 class="StepTitle">Step 1</h2>
+                <small>Set Incentive Param</small>
+                <form class="form-horizontal form-label-left" name="addItem">
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Bulan <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">                      
+                      <select required="required" id="bulan" class="form-control col-md-7 col-xs-12" ng-model="form.bulan">
+                        <option value="">--Pilih Bulan--</option>
+                        <option value="1">Januari</option>
+                        <option value="2">Februari</option>
+                        <option value="3">Maret</option>
+                        <option value="4">April</option>
+                        <option value="5">Mei</option>
+                        <option value="6">Juni</option>
+                        <option value="7">Juli</option>
+                        <option value="8">Agustus</option>
+                        <option value="9">September</option>
+                        <option value="10">Oktober</option>
+                        <option value="11">Nopember</option>
+                        <option value="12">Desember</option>
+                        
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tahun<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="hidden" class="form-control" ng-model="form.getCountBlock1">
+                      <input type="hidden" class="form-control" ng-model="form.getCountBlock2">
+                      <input type="hidden" class="form-control" ng-model="form.getCountBlock3">
+                      <input type="hidden" ng-model="form.incentiveparam" class="form-control">
+                      <!-- <input type="text" ng-model="form.tahun" name="tahun" required="required" class="form-control col-md-7 col-xs-12"> -->
+                      <select ng-model="form.tahun" id="tahun" name="tahun" required="required" class="form-control col-md-7 col-xs-12">
+                        <option ng-repeat="n in [] | range:2050">{{n}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Penghasilan Perusahaan<span class="required">*</span>
+                    </label>
+                    <div class="col-md-2 col-sm-2 col-xs-4">
+                      <input type="text" readonly="" ng-model="param" name="param" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-8">
+                      <input type="text" id="nilai1" ng-change="calculate_total_insentive(param,form.penghasilan)" ng-model="form.penghasilan" name="penghasilan" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Incentive Value<span class="required">*</span>
+                    </label>                    
+                    <div class="col-md-4 col-sm-4 col-xs-8">
+                      <input type="text" id="total_insentif" format="number" ng-model="form.total_insentif" name="total_insentif" required="required" readonly="" class="form-control col-md-7 col-xs-12">
+                      <!-- <input type="hidden" id="total_insentif_clean" ng-model="form.total_insentif_clean" name="total_insentif_clean" readonly="" class="form-control col-md-7 col-xs-12"> -->
+                    </div>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Valuta<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" id="valuta1" ng-model="form.valuta" name="valuta" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                  </div> -->
+                  <!-- <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Min Box QCC<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" ng-model="form.qcc" format="number" name="qcc" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Min Box RTG<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" ng-model="form.rtg" format="number" name="rtg" required="required" class="form-control col-md-7 col-xs-12">                      
+                    </div>
+                  </div> -->
+
+                  <!-- <button class="btn btn-primary" type="reset">Reset</button> -->
+                  <a ng-click="saveStep1(form,param)" class="btn btn-success">Next</a>
+                  
+                </form>
+
+              </div>
+              <div ng-show="form_step2 == 'show'">
+                <h2 class="StepTitle">Step 2</h2>
+                <small>Set Box Adjusment</small>
+                <br>
+                <br>
+                <button ng-click="step1()" class="btn btn-danger">Previous</button>
+                <button class="btn btn-primary" type="reset">Reset</button>
+                <button ng-click="saveStep2(form)" class="btn btn-success">Next</button>
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="x_panel">
+                      <div class="x_title">
+                        <h2>GROUP QCC</h2>                        
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content">
+                        <br />
+                        <form class="form-horizontal form-label-left input_mask">                        
+                          <p>GROUP A</p>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Box per Group</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <!-- <input type="text" ng-model="form.QccboxpergroupA_id" class="form-control"> -->
+                              <input type="text" ng-model="form.QccboxpergroupA" format="number" class="form-control" placeholder="Box per Group">
+                            </div>
+                          </div>
+
+                          <p>GROUP B</p>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Box per Group</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <!-- <input type="text" ng-model="form.QccboxpergroupB_id" class="form-control"> -->
+                              <input type="text" ng-model="form.QccboxpergroupB" format="number" class="form-control" placeholder="Box per Group">
+                            </div>
+                          </div>
+
+                          <p>GROUP C</p>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Box per Group</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <!-- <input type="text" ng-model="form.QccboxpergroupC_id" class="form-control"> -->
+                              <input type="text" ng-model="form.QccboxpergroupC" format="number" class="form-control" placeholder="Box per Group">
+                            </div>
+                          </div>
+
+                          <p>GROUP D</p>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Box per Group</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <!-- <input type="text" ng-model="form.QccboxpergroupD_id" class="form-control"> -->
+                              <input type="text" ng-model="form.QccboxpergroupD" format="number" class="form-control" placeholder="Box per Group">
+                            </div>
+                          </div>
+                          
+                          
+                          <div class="ln_solid"></div>
+                          
+
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="x_panel">
+                      <div class="x_title">
+                        <h2>GROUP RTG</h2>                        
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content">
+                        <br />
+                        <form class="form-horizontal form-label-left input_mask">                        
+                          <p>GROUP A</p>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Box per Group</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <!-- <input type="text" ng-model="form.RtgboxpergroupA_id" class="form-control"> -->
+                              <input type="text" ng-model="form.RtgboxpergroupA" format="number" class="form-control" placeholder="Box per Group">
+                            </div>
+                          </div>
+
+                          <p>GROUP B</p>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Box per Group</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <!-- <input type="text" ng-model="form.RtgboxpergroupB_id" class="form-control"> -->
+                              <input type="text" ng-model="form.RtgboxpergroupB" format="number" class="form-control" placeholder="Box per Group">
+                            </div>
+                          </div>
+
+                          <p>GROUP C</p>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Box per Group</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <!-- <input type="text" ng-model="form.RtgboxpergroupC_id" class="form-control"> -->
+                              <input type="text" ng-model="form.RtgboxpergroupC" format="number" class="form-control" placeholder="Box per Group">
+                            </div>
+                          </div>
+                          
+                          <p>GROUP D</p>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Box per Group</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <!-- <input type="text" ng-model="form.RtgboxpergroupD_id" class="form-control"> -->
+                              <input type="text" ng-model="form.RtgboxpergroupD" format="number" class="form-control" placeholder="Box per Group">
+                            </div>
+                          </div>
+                          
+                          
+                          <div class="ln_solid"></div>
+                          
+
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button ng-click="step1()" class="btn btn-danger">Previous</button>
+                <button class="btn btn-primary" type="reset">Reset</button>
+                <button ng-click="saveStep2(form)" class="btn btn-success">Next</button>
+              </div>
+
+              <div ng-show="form_step3 == 'show'">
+                <h2 class="StepTitle">Step 3</h2>
+                <small>Input Box Adjusment</small>
+                <br><br>
+                <button ng-click="step2()" class="btn btn-danger">Previous</button>
+                <button class="btn btn-primary" type="reset">Reset</button>
+                <button ng-click="saveStep3(form)" class="btn btn-success">Next</button>
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">                    
+                      <div class="x_title">
+                        <h2>Box Adjusment QCC <small></small></h2>
+                        <br><br><br>
+                          <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                          <label>Minimum Box QCC :</label>
+                              <input type="text" ng-model="form.minboxqcc" format="number" readonly="readonly" placeholder=".col-md-4" class="form-control">
+                            </div>
+
+                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                              <label>Kue Insentif Operator QCC :</label>
+                              <input type="text" ng-model="form.kueinsqcc" format="number" readonly="readonly" placeholder=".col-md-4" class="form-control">
+                            </div> 
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                              <!-- start accordion -->
+                              <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel">
+                                  <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOneQCC" target="_self" aria-expanded="true" aria-controls="collapseOne">
+                                    <h4 class="panel-title">Box QCC Group A</h4>
+                                  </a>
+                                  <div id="collapseOneQCC" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                      <h2>Box QCC Group A</h2>
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Group:</label>
+                                        <input type="hidden" ng-model="form.BOX_ADJUSMENT_GROUP_ID_QCCA" class="form-control">
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Group" ng-model="form.BoxPerGroupA" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Orang:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Orang" ng-model="form.BoxPerOrangA"  class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Insentif Per Group:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Group" ng-model="form.InsentifPerUnitA" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Over Box:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Over Box" ng-model="form.OverBoxA" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Harga Insentif Per Box</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Box" ng-model="form.InsentifPerBoxA" class="form-control">
+                                      </div> 
+                                      <table id="datatable-responsive-1" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                          <tr>
+                                            <th align="justify">No.</th>
+                                            <th>NAMA</th>
+                                            <th>Box per Orang</th>
+                                            <!-- <th>Insentif per Orang</th> -->
+                                            <th>Box Ojeker</th>
+                                            <!-- <th>Box Price</th>
+                                            <th>Tambahan Box (Ojeker) Jumlah</th>
+                                            <th>Insentif Final per Orang</th> -->
+                                          </tr>
+                                        </thead>
+
+
+                                        <tbody>
+                                          <tr ng-repeat="value in getQccGroupA">
+                                            <td>{{$index + 1}}</td>
+                                            <td>({{value.EMPLOYEE_NIK}}) {{value.EMPLOYEE_NAME}}</td>
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_TEMP" ng-blur="boxOrngAkeyUp(form.incentiveparam, getQccGroupA, form.BoxPerGroupA, ($index), form.BOX_ADJUSMENT_GROUP_ID_QCCA, form.InsentifPerUnitA)" placeholder="Box/orng" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td><input type="text" name="name" ng-model="value.BAE_INCENTIVE_EMP" required="required" class="form-control"></td> -->
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_OJEK" ng-blur="boxOjekQccA(form.incentiveparam, form.BOX_ADJUSMENT_GROUP_ID_QCCA, getQccGroupA, form.RtgInsentifPerBoxA, ($index))" placeholder="Box" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td></td>
+                                            <td></td>
+                                            <td></td> -->
+                                            
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="panel">
+                                  <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwoQCC" target="_self" aria-expanded="false" aria-controls="collapseTwo">
+                                    <h4 class="panel-title">Box QCC Group B</h4>
+                                  </a>
+                                  <div id="collapseTwoQCC" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                      <h2>Box QCC Group B</h2>
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Group:</label>
+                                        <input type="hidden" ng-model="form.BOX_ADJUSMENT_GROUP_ID_QCCB" class="form-control">
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Group" readonly="" ng-model="form.BoxPerGroupB" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Orang:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Group" ng-model="form.BoxPerOrangB" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Insentif Per Group:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Group" ng-model="form.InsentifPerUnitB" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Over Box:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Over Box" ng-model="form.OverBoxB" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Harga Insentif Per Box</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Box" ng-model="form.InsentifPerBoxB" class="form-control">
+                                      </div> 
+
+                                      <table id="datatable-responsive-2" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                          <tr>
+                                            <th align="justify">No.</th>
+                                            <th>NAMA</th>
+                                            <th>Box per Orang</th>
+                                            <!-- <th>Insentif per Orang</th> -->
+                                            <th>Box Ojeker</th>
+                                            <!-- <th>Box Price</th>
+                                            <th>Tambahan Box (Ojeker) Jumlah</th>
+                                            <th>Insentif Final per Orang</th> -->
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr  ng-repeat="value in getQccGroupB">
+                                           <td>{{$index + 1}}</td>
+                                            <td>({{value.EMPLOYEE_NIK}}) {{value.EMPLOYEE_NAME}}</td>
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_TEMP" ng-blur="boxOrngBkeyUp(form.incentiveparam, getQccGroupB, form.BoxPerGroupB, ($index), form.BOX_ADJUSMENT_GROUP_ID_QCCB, form.InsentifPerUnitB)" placeholder="Box/orng" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td><input type="text" name="name" ng-model="value.BAE_INCENTIVE_EMP" required="required" class="form-control"></td>                               -->
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_OJEK" ng-blur="boxOjekQccB(form.incentiveparam, form.BOX_ADJUSMENT_GROUP_ID_QCCB, getQccGroupB, form.RtgInsentifPerBoxB, ($index))" placeholder="Box" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td></td>
+                                            <td></td>
+                                            <td></td> -->
+                                            
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="panel">
+                                  <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThreeQCC" target="_self" aria-expanded="false" aria-controls="collapseThree">
+                                    <h4 class="panel-title">Box QCC Group C</h4>
+                                  </a>
+                                  <div id="collapseThreeQCC" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                      <h2>Box QCC Group C</h2>
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Group:</label>
+                                        <input type="hidden" ng-model="form.BOX_ADJUSMENT_GROUP_ID_QCCC" class="form-control">
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Group" ng-model="form.BoxPerGroupC" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Orang:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Group" ng-model="form.BoxPerOrangC" class="form-control totals3">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Insentif Per Group:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Group" ng-model="form.InsentifPerUnitC" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Over Box:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Over Box" ng-model="form.OverBoxC" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Harga Insentif Per Box</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Box" ng-model="form.InsentifPerBoxC" class="form-control">
+                                      </div> 
+
+                                      <table id="datatable-responsive-3" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                          <tr>
+                                            <th align="justify">No.</th>
+                                            <th>NAMA</th>
+                                            <th>Box per Orang</th>
+                                            <!-- <th>Insentif per Orang</th> -->
+                                            <th>Box Ojeker</th>
+                                            <!-- <th>Box Price</th>
+                                            <th>Tambahan Box (Ojeker) Jumlah</th>
+                                            <th>Insentif Final per Orang</th> -->
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr ng-repeat="value in getQccGroupC">
+                                            <td>{{$index + 1}}</td>
+                                            <td>({{value.EMPLOYEE_NIK}}) {{value.EMPLOYEE_NAME}}</td>
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_TEMP" ng-blur="boxOrngCkeyUp(form.incentiveparam, getQccGroupC, form.BoxPerGroupC, ($index), form.BOX_ADJUSMENT_GROUP_ID_QCCC, form.InsentifPerUnitC)" placeholder="Box/orng" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td><input type="text" name="name" ng-model="value.BAE_INCENTIVE_EMP" required="required" class="form-control"></td>                               -->
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_OJEK" ng-blur="boxOjekQccC(form.incentiveparam, form.BOX_ADJUSMENT_GROUP_ID_QCCC, getQccGroupC, form.RtgInsentifPerBoxC, ($index))" placeholder="Box" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td></td>
+                                            <td></td>
+                                            <td></td> -->
+                                            
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="panel">
+                                  <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseFourQCC" target="_self" aria-expanded="false" aria-controls="collapseThree">
+                                    <h4 class="panel-title">Box QCC Group D</h4>
+                                  </a>
+                                  <div id="collapseFourQCC" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                    <div class="panel-body">
+                                      <h2>Box QCC Group D</h2>
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Group:</label>
+                                        <input type="hidden"  ng-model="form.BOX_ADJUSMENT_GROUP_ID_QCCD" class="form-control">
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Group" ng-model="form.BoxPerGroupD" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Orang:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Group" ng-model="form.BoxPerOrangD" class="form-control totals3">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Insentif Per Group:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Group" ng-model="form.InsentifPerUnitD" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Over Box:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Over Box" ng-model="form.OverBoxD" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Harga Insentif Per Box</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Box" ng-model="form.InsentifPerBoxD" class="form-control">
+                                      </div>
+                                      <table id="datatable-responsive-4" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                          <tr>
+                                            <th align="justify">No.</th>
+                                            <th>NAMA</th>
+                                            <th>Box per Orang</th>
+                                            <!-- <th>Insentif per Orang</th> -->
+                                            <th>Box Ojeker</th>
+                                            <!-- <th>Box Price</th>
+                                            <th>Tambahan Box (Ojeker) Jumlah</th>
+                                            <th>Insentif Final per Orang</th> -->
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr ng-repeat="value in getQccGroupD">
+                                           <td>{{$index + 1}}</td>
+                                            <td>({{value.EMPLOYEE_NIK}}) {{value.EMPLOYEE_NAME}}</td>
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_TEMP" ng-blur="boxOrngDkeyUp(form.incentiveparam, getQccGroupD, form.BoxPerGroupD, ($index), form.BOX_ADJUSMENT_GROUP_ID_QCCD, form.InsentifPerUnitD)" placeholder="Box/orng" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td><input type="text" name="name" ng-model="value.BAE_INCENTIVE_EMP" required="required" class="form-control"></td>                               -->
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_OJEK" ng-blur="boxOjekQccD(form.incentiveparam, form.BOX_ADJUSMENT_GROUP_ID_QCCD, getQccGroupD, form.RtgInsentifPerBoxD, ($index))" placeholder="Box" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td></td>
+                                            <td></td>
+                                            <td></td> -->
+                                            
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end of accordion -->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="x_panel">                    
+                      <div class="x_title">
+                        <h2>Box Adjusment RTG <small></small></h2>
+                        <br><br><br>
+                          <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                          <label>Minimum Box RTG :</label>
+                              <input type="text" format="number" ng-model="form.minboxrtg" readonly="readonly" placeholder=".col-md-4" class="form-control">
+                            </div>
+
+                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                              <label>Kue Insentif Operator RTG :</label>
+                              <input type="text" format="number" ng-model="form.kueinsrtg" readonly="readonly" placeholder=".col-md-4" class="form-control">
+                            </div> 
+
+                        <div class="clearfix"></div>
+                      </div>
+
+                      <div class="x_content">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                              <!-- start accordion -->
+                              <div class="accordion" id="accordion2" role="tablist" aria-multiselectable="true">
+                                <div class="panel">
+                                  <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion2" href="#collapseOneRtg" target="_self" aria-expanded="true" aria-controls="collapseOne">
+                                    <h4 class="panel-title">Box RTG Group A</h4>
+                                  </a>
+                                  <div id="collapseOneRtg" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                      <h2>Box RTG Group A</h2>
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Group:</label>
+                                        <input type="hidden" ng-model="form.BOX_ADJUSMENT_GROUP_ID_RTGA" class="form-control">
+                                        <input type="text" format="number" readonly="readonly" placeholder="Box Per Group" ng-model="form.RtgBoxPerGroupA" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Orang:</label>
+                                        <input type="text" format="number" readonly="readonly" placeholder="Box Per Orang" ng-model="form.RtgBoxPerOrangA"  class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Insentif Per Group:</label>
+                                        <input type="text" format="number" readonly="readonly" placeholder="Insentif Per Group" ng-model="form.RtgInsentifPerUnitA" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Over Box:</label>
+                                        <input type="text" format="number" readonly="readonly" placeholder="Over Box" ng-model="form.RtgOverBoxA" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Harga Insentif Per Box</label>
+                                        <input type="text" format="number" readonly="readonly" placeholder="Insentif Per Box" ng-model="form.RtgInsentifPerBoxA" class="form-control">
+                                      </div> 
+                                      <table id="datatable-responsive-1" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                          <tr>
+                                            <th align="justify">No.</th>
+                                            <th>NAMA</th>
+                                            <th>Box per Orang</th>
+                                            <!-- <th>Insentif per Orang</th> -->
+                                            <th>Box Ojeker</th>
+                                            <!-- <th>Box Price</th>
+                                            <th>Tambahan Box (Ojeker) Jumlah</th>
+                                            <th>Insentif Final per Orang</th> -->
+                                          </tr>
+                                        </thead>
+
+
+                                        <tbody>
+                                          <tr ng-repeat="value in getRtgGroupA">
+                                            <td>{{$index + 1}}</td>
+                                            <td>({{value.EMPLOYEE_NIK}}) {{value.EMPLOYEE_NAME}}</td>
+                                            <td>                              
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_TEMP" ng-blur="RtgboxOrngAkeyUp(form.incentiveparam, getRtgGroupA, form.RtgBoxPerGroupA, ($index), form.BOX_ADJUSMENT_GROUP_ID_RTGA, form.RtgInsentifPerUnitA)" placeholder="Box/orng" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td><input type="text" name="name" ng-model="value.BAE_INCENTIVE_EMP" required="required" class="form-control"></td>                               -->
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_OJEK" ng-blur="boxOjekRtgA(form.incentiveparam, form.BOX_ADJUSMENT_GROUP_ID_RTGA, getRtgGroupA, form.InsentifPerBoxA, ($index))" placeholder="Box" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td></td>
+                                            <td></td>
+                                            <td></td> -->
+                                            
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="panel">
+                                  <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwoRtg" target="_self" aria-expanded="false" aria-controls="collapseTwo">
+                                    <h4 class="panel-title">Box RTG Group B</h4>
+                                  </a>
+                                  <div id="collapseTwoRtg" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                      <h2>Box RTG Group B</h2>
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Group:</label>
+                                        <input type="hidden" ng-model="form.BOX_ADJUSMENT_GROUP_ID_RTGB" class="form-control">
+                                        <input type="text" format="number" readonly="readonly" placeholder="Box Per Group" ng-model="form.RtgBoxPerGroupB" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Orang:</label>
+                                        <input type="text" format="number" readonly="readonly" placeholder="Box Per Group" ng-model="form.RtgBoxPerOrangB" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Insentif Per Group:</label>
+                                        <input type="text" format="number" readonly="readonly" placeholder="Insentif Per Group" ng-model="form.RtgInsentifPerUnitB" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Over Box:</label>
+                                        <input type="text" format="number" readonly="readonly" placeholder="Over Box" ng-model="form.RtgOverBoxB" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Harga Insentif Per Box</label>
+                                        <input type="text" format="number" readonly="readonly" placeholder="Insentif Per Box" ng-model="form.RtgInsentifPerBoxB" class="form-control">
+                                      </div> 
+
+                                      <table id="datatable-responsive-2" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                          <tr>
+                                            <th align="justify">No.</th>
+                                            <th>NAMA</th>
+                                            <th>Box per Orang</th>
+                                            <!-- <th>Insentif per Orang</th> -->
+                                            <th>Box Ojeker</th>
+                                            <!-- <th>Box Price</th>
+                                            <th>Tambahan Box (Ojeker) Jumlah</th>
+                                            <th>Insentif Final per Orang</th> -->
+                                          </tr>
+                                        </thead>
+                                        <tbody >
+                                          <tr ng-repeat="value in getRtgGroupB">
+                                            <td>{{$index + 1}}</td>
+                                            <td>({{value.EMPLOYEE_NIK}}) {{value.EMPLOYEE_NAME}}</td>
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_TEMP" ng-blur="RtgboxOrngBkeyUp(form.incentiveparam, getRtgGroupB, form.RtgBoxPerGroupB, ($index), form.BOX_ADJUSMENT_GROUP_ID_RTGB, form.RtgInsentifPerUnitB)" placeholder="Box/orng" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td><input type="text" name="name" ng-model="value.BAE_INCENTIVE_EMP" required="required" class="form-control"></td>                               -->
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_OJEK" ng-blur="boxOjekRtgB(form.incentiveparam, form.BOX_ADJUSMENT_GROUP_ID_RTGB, getRtgGroupB, form.InsentifPerBoxB, ($index))" placeholder="Box" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td></td>
+                                            <td></td>
+                                            <td></td> -->
+                                            
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="panel">
+                                  <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion2" href="#collapseThreeRtg" target="_self" aria-expanded="false" aria-controls="collapseThree">
+                                    <h4 class="panel-title">Box RTG Group C</h4>
+                                  </a>
+                                  <div id="collapseThreeRtg" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                      <h2>Box RTG Group C</h2>
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Group:</label>
+                                        <input type="hidden" ng-model="form.BOX_ADJUSMENT_GROUP_ID_RTGC" class="form-control">
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Group" ng-model="form.RtgBoxPerGroupC" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Orang:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Group" ng-model="form.RtgBoxPerOrangC" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Insentif Per Group:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Group" ng-model="form.RtgInsentifPerUnitC" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Over Box:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Over Box" ng-model="form.RtgOverBoxC" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Harga Insentif Per Box</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Box" ng-model="form.RtgInsentifPerBoxC" class="form-control">
+                                      </div> 
+
+                                      <table id="datatable-responsive-3" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                          <tr>
+                                            <th align="justify">No.</th>
+                                            <th>NAMA</th>
+                                            <th>Box per Orang</th>
+                                            <!-- <th>Insentif per Orang</th> -->
+                                            <th>Box Ojeker</th>
+                                            <!-- <th>Box Price</th>
+                                            <th>Tambahan Box (Ojeker) Jumlah</th>
+                                            <th>Insentif Final per Orang</th> -->
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr ng-repeat="value in getRtgGroupC">
+                                            <td>{{$index + 1}}</td>
+                                            <td>({{value.EMPLOYEE_NIK}}) {{value.EMPLOYEE_NAME}}</td>
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_TEMP" ng-blur="RtgboxOrngCkeyUp(form.incentiveparam, getRtgGroupC, form.RtgBoxPerGroupC, ($index), form.BOX_ADJUSMENT_GROUP_ID_RTGC, form.RtgInsentifPerUnitC)" placeholder="Box/orng" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td><input type="text" name="name" ng-model="value.BAE_INCENTIVE_EMP" required="required" class="form-control"></td>                               -->
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_OJEK" ng-blur="boxOjekRtgC(form.incentiveparam, form.BOX_ADJUSMENT_GROUP_ID_RTGC, getRtgGroupC, form.InsentifPerBoxC, ($index))" placeholder="Box" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td></td>
+                                            <td></td>
+                                            <td></td> -->
+                                            
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="panel">
+                                  <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion2" href="#collapseFourRtg" target="_self" aria-expanded="false" aria-controls="collapseThree">
+                                    <h4 class="panel-title">Box RTG Group D</h4>
+                                  </a>
+                                  <div id="collapseFourRtg" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                    <div class="panel-body">
+                                      <h2>Box RTG Group D</h2>
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Group:</label>
+                                        <input type="hidden" ng-model="form.BOX_ADJUSMENT_GROUP_ID_RTGD" class="form-control">
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Group" ng-model="form.RtgBoxPerGroupD" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Box Per Orang:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Box Per Group" ng-model="form.RtgBoxPerOrangD" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Insentif Per Group:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Group" ng-model="form.RtgInsentifPerUnitD" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Over Box:</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Over Box" ng-model="form.RtgOverBoxD" class="form-control">
+                                      </div>
+
+                                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                        <label>Harga Insentif Per Box</label>
+                                        <input type="text" readonly="readonly" format="number" placeholder="Insentif Per Box" ng-model="form.RtgInsentifPerBoxD" class="form-control">
+                                      </div>
+                                      <table id="datatable-responsive-4" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                          <tr>
+                                            <th align="justify">No.</th>
+                                            <th>NAMA</th>
+                                            <th>Box per Orang</th>
+                                            <!-- <th>Insentif per Orang</th> -->
+                                            <th>Box Ojeker</th>
+                                            <!-- <th>Box Price</th>
+                                            <th>Tambahan Box (Ojeker) Jumlah</th>
+                                            <th>Insentif Final per Orang</th> -->
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr ng-repeat="value in getRtgGroupD">
+                                            <td>{{$index + 1}}</td>
+                                            <td>({{value.EMPLOYEE_NIK}}) {{value.EMPLOYEE_NAME}}</td>
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_TEMP" ng-blur="RtgboxOrngDkeyUp(form.incentiveparam, getRtgGroupD, form.RtgBoxPerGroupD, ($index), form.BOX_ADJUSMENT_GROUP_ID_RTGD, form.RtgInsentifPerUnitD)" placeholder="Box/orng" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td><input type="text" name="name" ng-model="value.BAE_INCENTIVE_EMP" required="required" class="form-control"></td>                               -->
+                                            <td>
+                                              <input type="text" name="name" format="number" ng-model="value.EMPLOYEE_BOX_OJEK" ng-blur="boxOjekRtgD(form.incentiveparam, form.BOX_ADJUSMENT_GROUP_ID_RTGD, getRtgGroupD, form.InsentifPerBoxD, ($index))" placeholder="Box" required="required" class="form-control">
+                                            </td>
+                                            <!-- <td></td>
+                                            <td></td>
+                                            <td></td> -->
+                                            
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end of accordion -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button ng-click="step2()" class="btn btn-danger">Previous</button>
+                <button class="btn btn-primary" type="reset">Reset</button>
+                <button ng-click="saveStep3(form)" class="btn btn-success">Next</button>              
+              </div>
+
+              <div ng-show="form_step4 == 'show'">
+                <h2 class="StepTitle">Step 4</h2>
+                <small>Input Potongan Per Karyawan</small>
+                <br><br>
+                <button ng-click="step3()" class="btn btn-danger">Previous</button>
+                <button class="btn btn-primary" type="reset">Reset</button>
+                <button ng-click="saveStep4(form)" class="btn btn-success">Next</button>
+                <div class="row">
+                  <div class="col-lg-12 margin-tb">
+                      <div class="pull-right" style="padding-top:30px">
+                          <div class="box-tools" style="display:inline-table">
+                            <div class="input-group">
+
+                                <input type="text" class="form-control input-sm ng-valid ng-dirty" placeholder="Ketik Nama / NIK Karyawan" ng-change="searchPotongan(form.incentiveparam,searchTextPot)" ng-model="searchTextPot" name="table_search" title="" tooltip="" data-original-title="Min character length is 3">
+                                <span class="input-group-addon">Cari Otomatis</span>
+                            </div>
+                          </div>
+                      </div>
+                  </div> 
+
+                  <div class="col-md-12 col-sm-12 col-xs-12">                    
+                    <div class="x_panel">
+                      <div class="x_title">
+                        <h2>Input Potongan (%)</h2>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content">
+                        <div id="div_upload_potongan" style="margin-bottom: 35px;" class="col-md-12 col-sm-12 col-xs-12">    
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <p>Download Template Excel Potongan &nbsp;&nbsp;<a onclick="window.location.href=site_url+'/download_template/'+$('#bulan').val()+'-'+$('#tahun').val()"><button class="btn btn-default btn-xs">Download Template</button></a></p>                            
+                            <p>Upload Excel Potongan</p>                            
+                            <input type="file" id="file_upload" ngf-select ng-model="potonganFile" name="file" required style="margin-bottom: 5px;">                            
+                            <button ng-click="upload_potongan(form.incentiveparam, potonganFile)" class="btn btn-info btn-xs">Upload</button>
+                          </div>                                                
+                        </div>
+
+                        <table id="datatable-responsive-4" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                              <th align="justify">NO.</th>
+                              <th>NAMA</th>
+                              <th width="15">SLICE</th>
+                              <th>GROSS INCENTIVE</th>
+                              <th>POTONGAN (%)</th>
+                              <th>JUMLAH POTONGAN</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="value in getPotonganKar">
+                              <td>{{$index + 1}}</td>
+                              <td>({{value.EMPLOYEE_NIK}}) {{value.EMPLOYEE_NAME}}</td>
+                              <td>{{value.SLICE_KAR}}</td>
+                              <td>{{value.TEMP_INCENTIVE_TOTAL}}</td>
+                              <td>
+                                <input type="text" name="name" format="number" ng-model="value.TEMP_INCENTIVE_PERCENT_CUT" ng-blur="PotonganKeyUp(form.incentiveparam, getPotonganKar,  ($index))" placeholder="Potongan" required="required" class="form-control">
+                              </td>
+                              <td>
+                                <input type="text" name="potongan_total" format="number" ng-model="value.TEMP_INCENTIVE_COST_CUT_ROUND" placeholder="jumlah potongan" required="required" disabled class="form-control">
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button ng-click="step3()" class="btn btn-danger">Previous</button>
+                <button class="btn btn-primary" type="reset">Reset</button>
+                <button ng-click="saveStep4(form)" class="btn btn-success">Next</button>
+              </div>
+
+              <div ng-show="form_step5 == 'show'">
+                <h2 class="StepTitle">Step 5</h2>
+                <small>Preview</small>                
+                <div>                  
+                  <button ng-click="step4()" class="btn btn-danger">Previous</button>
+                  <button ng-click="saveStep5(form.incentiveparam)" class="btn btn-success">POSTING</button>
+                  <a onclick="window.location.href=site_url+'/exportexcel'"><button class="btn btn-warning">Export Excel</button></a>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">                  
+                  <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                      <li role="presentation" class="active"><a href="#tab_content1" target="_self" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Karyawan Insentif</a>
+                      </li>
+                      <li role="presentation" class=""><a href="#tab_content2" target="_self" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Portion Of Slice</a>
+                      </li>
+                      <li role="presentation" class=""><a href="#tab_content3" target="_self" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Portion Of Block</a>
+                      </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                      <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                        <div class="col-lg-12 margin-tb">
+                            <div class="pull-right" style="padding-top:30px">
+                                <div class="box-tools" style="display:inline-table">
+                                  <div class="input-group">
+
+                                      <input type="text" class="form-control input-sm ng-valid ng-dirty" placeholder="Ketik Nama / NIK Karyawan" ng-change="searchInsentif(form.incentiveparam,searchText)" ng-model="searchText" name="table_search" title="" tooltip="" data-original-title="Min character length is 3">
+                                      <span class="input-group-addon">Cari Otomatis</span>
+                                  </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-md-12 col-sm-12 col-xs-12">                        
+                          <div class="x_panel">
+                            <div class="x_title">
+                              <h2>Preview Insentif Bulan {{bulan}} Tahun {{tahun}}  </h2>
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                              <div style="overflow-x: auto;">                              
+                                <table class="table table-hover" style="font-size: 10px">
+                                  <thead>
+                                    <tr>
+                                        <th width="5px">NO.</th>
+                                        <th width="30px">EMPLOYEE</th>
+                                        <th width="20px">POSITION</th>
+                                        <th width="20px">GROUP</th>
+                                        <th width="20px">SHIFT</th>
+                                        <th width="20px">BLOCK</th>
+                                        <th width="20px">SLICE</th>
+                                        <th width="20px">BOX HANDLE</th>
+                                        <th width="35px">INCENTIVE-FLAT</th>
+                                        <th width="35px">INCENTIVE-BOX</th>
+                                        <th width="35px">INCENTIVE-OJEKER</th>
+                                        <th width="35px">INCENTIVE-THRESHOLD</th>
+                                        <th width="35px">INCENTIVE-TOTAL</th>
+                                        <th width="20px">(%) POTONGAN</th>
+                                        <th width="35px">JUMLAH POTONGAN</th>
+                                        <th width="35px">PENGEMBALIAN INSENTIF</th>
+                                        <th width="35px">INCENTIVE-FINAL</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr ng-repeat="value in previewInsentif">
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ value.EMPLOYEE_NAME }} ({{value.EMPLOYEE_NIK}})</td>
+                                        <td>{{ value.POSITION_NAME }}</td>
+                                        <td>{{ value.GROUP_NAME }}</td>
+                                        <td>{{ value.SHIFT_NAME }}</td>
+                                        <td>{{ value.BLOCK_NAME }}</td>
+                                        <td>{{ value.SLICE_NAME }}</td>
+                                        <td>{{ value.BAE_BOX_HANDLE }}</td>
+                                        <td>{{ value.TEMP_INCENTIVE_FLAT }}</td>
+                                        <td>{{ value.TEMP_INCENTIVE_BOX }}</td>
+                                        <td>{{ value.TEMP_INCENTIVE_OJEKER }}</td>
+                                        <td>{{ value.TEMP_INCENTIVE_THRESHOLD }}</td>
+                                        <td>{{ value.TEMP_INCENTIVE_TOTAL }}</td>
+                                        <td>{{ value.TEMP_INCENTIVE_PERCENT_CUT }} <strong>%</strong></td>
+                                        <td>{{ value.TEMP_INCENTIVE_COST_CUT }}</td>
+                                        <td>{{ value.TEMP_INCENTIVE_DIST_CUT }}</td>
+                                        <td>{{ value.TEMP_INCENTIVE_TOTAL_AFTER_CUT }}</td>
+                                        
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <div class="x_panel">
+                            <div class="x_title">
+                              <h2>Preview Portion Of Slice Insentif Bulan {{bulan}} Tahun {{tahun}} </h2>
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                              <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                      <th>NO.</th>
+                                      <th>Selisih Per Slice</th>
+                                      <th>Block</th>
+                                      <th>Slice</th>
+                                      <th>Jumlah Orang</th>
+                                      <th>Coefficient of upper value</th>
+                                      <th>Bobot</th>                                  
+                                      <th>Simulation Kue Per Slice</th>
+                                      <th>Flat Distributed</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr ng-repeat="value in showPortionOfSlice">
+                                      <td>{{ $index + 1 }}</td>
+                                      <td>{{ value.POS_DIFF_PER_SLICE }} %</td>
+                                      <td>{{ value.BLOCK_ID }}</td>
+                                      <td>{{ value.SLICE_ID }}</td>
+                                      <td>{{ value.POS_HEADACOUNT_PER_SLICE }} Orang</td>
+                                      <td>{{ value.POS_COEFFICIENT_UPPER_VALUE }}</td>
+                                      <td>{{ value.POS_BOBOT }}</td>
+                                      <td>{{ value.POS_KUE_PER_SLICE }}</td>
+                                      <td>{{ value.POS_NOM_FLAT_DIST_BLOCK_I }}</td>
+                                      
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <div class="x_panel">
+                            <div class="x_title">
+                              <h2>Preview Portion Of Slice Insentif Bulan {{bulan}} Tahun {{tahun}} </h2>
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                              <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                      <th>NO.</th>
+                                      <th>Diff Per Block</th>
+                                      <th>Headcount per Block</th>
+                                      <th>Block</th>
+                                      <th>Kue Per Block</th>                                  
+                                      <th>Different Nominal</th>
+                                      <th>Block Composition</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr ng-repeat="value in showPortionOfBlock">
+                                      <td>{{ $index + 1 }}</td>
+                                      <td>{{ value.POB_DIFF_PER_BLOCK }}</td>
+                                      <td>{{ value.HEADACOUNT_PER_BLOCK }} Orang</td>
+                                      <td>{{ value.BLOCK_ID }}</td>
+                                      <td>{{ value.POB_KUE_PER_BLOCK }}</td>
+                                      <td>{{ value.POB_DIFF_NOMINAL }}</td>
+                                      <td>{{ value.Block_Composition }} %</td>
+                                      
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>                    
+                  <button ng-click="step4()" class="btn btn-danger">Previous</button>
+                  <button ng-click="saveStep5(form.incentiveparam)" class="btn btn-success">POSTING</button>
+                  <a onclick="window.location.href=site_url+'/exportexcel"><button class="btn btn-warning">Export Excel</button></a>
+                </div>
+              </div>
+
+            </div>
+            <!-- End SmartWizard Content -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    $('#nilai1').maskMoney({prefix: 'Rp. ', 
+                              thousands: '.', 
+                              decimal: ',',
+                              precision: 0
+                            });
+          $("#nilai1").keyup(function() {
+            var clone = $(this).val();
+            var cloned = clone.replace(/[A-Za-z$. ,-]/g, "")
+            $("#nilai2").val(cloned);
+          });
+
+     $('#rtg1').maskMoney({prefix: 'Rp. ', 
+                              thousands: '.', 
+                              decimal: ',',
+                              precision: 0
+                            });
+          $("#rtg1").keyup(function() {
+            var clone = $(this).val();
+            var cloned = clone.replace(/[A-Za-z$. ,-]/g, "")
+            $("#rtg2").val(cloned);
+          });
+
+     $('#qcc1').maskMoney({prefix: 'Rp. ', 
+                            thousands: '.', 
+                            decimal: ',',
+                            precision: 0
+                          });
+        $("#qcc1").keyup(function() {
+          var clone = $(this).val();
+          var cloned = clone.replace(/[A-Za-z$. ,-]/g, "")
+          $("#qcc2").val(cloned);
+        });
+
+     $('#valuta1').maskMoney({prefix: 'Rp. ', 
+                            thousands: '.', 
+                            decimal: ',',
+                            precision: 0
+                          });
+        $("#valuta1").keyup(function() {
+          var clone = $(this).val();
+          var cloned = clone.replace(/[A-Za-z$. ,-]/g, "")
+          $("#valuta2").val(cloned);
+        });
+
+      $(document).on("keyup", ".boxorng1", function() {
+          var sum = 0;
+          $(".boxorng1").each(function(){
+              sum += +$(this).val();
+          });
+          $(".totals1").val(sum);
+      });
+
+      $(document).on("keyup", ".boxorng2", function() {
+          var sum = 0;
+          $(".boxorng2").each(function(){
+              sum += +$(this).val();
+          });
+          $(".totals2").val(sum);
+      });
+
+      $(document).on("keyup", ".boxorng3", function() {
+          var sum = 0;
+          $(".boxorng3").each(function(){
+              sum += +$(this).val();
+          });
+          $(".totals3").val(sum);
+      });
+
+      $(document).on("keyup", ".boxorng4", function() {
+          var sum = 0;
+          $(".boxorng4").each(function(){
+              sum += +$(this).val();
+          });
+          $(".totals4").val(sum);
+      });
+
+      
+    </script>
+
+    <script type="text/javascript">
+    
+
+</script>

@@ -1,0 +1,355 @@
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Form Wizards</h3>
+      </div>
+
+      <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                  </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Input Insentif</h2>
+            
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+
+            <!-- Smart Wizard -->
+            
+            <div id="wizard" class="form_wizard wizard_horizontal">
+              <ul class="wizard_steps">
+                <li>
+                  <a ng-click="step1()">
+                    <span class="step_no" ng-style="form_style1">1</span>
+                    <span class="step_descr">
+                        Step 1<br />
+                        <small>Distribution Engine</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a ng-click="step2()">
+                    <span class="step_no" ng-style="form_style2">2</span>
+                    <span class="step_descr">
+                        Step 2<br />
+                        <small>Portion Of Block</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a ng-click="step3()">
+                    <span class="step_no" ng-style="form_style3">3</span>
+                    <span class="step_descr">
+                        Step 3<br />
+                        <small>Step 3 description</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a ng-click="step4()">
+                    <span class="step_no" ng-style="form_style4">4</span>
+                    <span class="step_descr">
+                        Step 4<br />
+                        <small>Step 4 description</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a ng-click="step5()">
+                    <span class="step_no" ng-style="form_style5">3</span>
+                    <span class="step_descr">
+                        Step 5<br />
+                        <small>Step 5 description</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a ng-click="step6()">
+                    <span class="step_no" ng-style="form_style6">4</span>
+                    <span class="step_descr">
+                        Step 6<br />
+                        <small>Step 6 description</small>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+              <div ng-show="form_step1 == 'show'">
+                <h2 class="StepTitle">Step 1</h2>
+                <form class="form-horizontal form-label-left" name="addItem">
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Bulan <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">                      
+                      <select required="required" class="form-control col-md-7 col-xs-12" ng-model="form.bulan">
+                        <option value="">--Pilih Bulan--</option>
+                        <option value="1">Januari</option>
+                        <option value="2">Februari</option>
+                        <option value="3">Maret</option>
+                        <option value="4">April</option>
+                        <option value="5">Mei</option>
+                        <option value="6">Juni</option>
+                        <option value="7">Juli</option>
+                        <option value="8">Agustus</option>
+                        <option value="9">September</option>
+                        <option value="10">Oktober</option>
+                        <option value="11">Nopember</option>
+                        <option value="12">Desember</option>
+                        
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tahun<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="hidden" ng-model="form.incentiveparam" name="incentiveparam" required="required" class="form-control col-md-7 col-xs-12">
+                      <input type="text" ng-model="form.tahun" name="tahun" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Penghasilan Perusahaan<span class="required">*</span>
+                    </label>
+                    <div class="col-md-2 col-sm-2 col-xs-4">
+                      <input type="text" ng-model="param" name="param" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-8">
+                      <input type="text" id="nilai1" ng-model="form.penghasilan" name="penghasilan" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Valuta<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" id="valuta1" ng-model="form.valuta" name="valuta" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >QCC Per Box<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" id="qcc1" ng-model="form.qcc" name="qcc" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >RTG Per Box<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" id="rtg1" ng-model="form.rtg" name="rtg" required="required" class="form-control col-md-7 col-xs-12">                      
+                    </div>
+                  </div>
+
+                  <a ng-click="saveStep1(form,param)" class="btn btn-primary">Next</a>
+                  
+                </form>
+
+              </div>
+              <div ng-show="form_step2 == 'show'">
+                <h2 class="StepTitle">Step 2</h2>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                  <!-- <div class="x_panel"> -->
+                    <div class="x_title">
+                      <h2>Portion Of Block</h2>                      
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th width="100px">Diff per Block (%)</th>
+                            <th width="30px">Headcount per Block</th>
+                            <th>Box Ranking</th>
+                            <th>Block</th>
+                            <th>Coefficient Upper Value</th>
+                            <th>Bobot</th>
+                            <th>Persentase Block</th>
+                            <th>Persentase Block per Karyawan</th>
+                            <th>Kue per Block</th>
+                            <th>AVG nominal per individu</th>
+                            <th>Diff nominal</th>
+                            <th>Diff (%)</th>
+                            <th>Block per compotion (%)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><input type="text" class="form-control" readonly="readonly" id="diffBlock1" placeholder="0" ng-model="form.diffBlock1"></td>
+                            <td><input type="text" class="form-control" id="countBlock1" readonly="readonly" ng-model="form.getCountBlock1"></td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td><input type="text" class="form-control" ng-keyup="upperBlockKey(form.upperBlock1,form.diffBlock3,form.diffBlock2,form.getCountBlock1,form.getCountBlock2,form.getCountBlock3)" id="upperBlock1" ng-model="form.upperBlock1"></td>
+                            <td><input type="text" class="form-control" id="bobot1" readonly="readonly" ng-model="form.bobot1"></td>
+                            <td><input type="text" class="form-control" id="persenBlock1" readonly="readonly" ng-model="form.persenBlock1"></td>
+                            <td><input type="text" class="form-control" id="persenBlockKar1" readonly="readonly" ng-model="form.persenBlockKar1"></td>
+                            <td><input type="text" class="form-control" id="kueBlock1" readonly="readonly" ng-model="form.kueBlock1"></td>
+                            <td><input type="text" class="form-control" id="avgBlock1" readonly="readonly" ng-model="form.avgBlock1"></td>
+                            <td><input type="text" class="form-control" id="diffNomBlock1" readonly="readonly" ng-model="form.diffNomBlock1"></td>
+                            <td><input type="text" class="form-control" id="diffPersenBlock1" readonly="readonly" ng-model="form.diffPersenBlock1"></td>
+                            <td><input type="text" class="form-control" id="BlockPerCom1" readonly="readonly" ng-model="form.BlockPerCom1"></td>                            
+                          </tr>
+                          <tr>
+                            <td><input type="text" class="form-control" id="diffBlock3" ng-model="form.diffBlock3"></td>
+                            <td><input type="text" class="form-control" id="countBlock3" readonly="readonly" ng-model="form.getCountBlock3"></td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td><input type="text" class="form-control" id="upperBlock3" readonly="readonly" ng-model="form.upperBlock3"></td>
+                            <td><input type="text" class="form-control" id="bobot3" readonly="readonly" ng-model="form.bobot3"></td>
+                            <td><input type="text" class="form-control" id="persenBlock3" readonly="readonly" ng-model="form.persenBlock3"></td>
+                            <td><input type="text" class="form-control" id="persenBlockKar3" readonly="readonly" ng-model="form.persenBlockKar3"></td>
+                            <td><input type="text" class="form-control" id="kueBlock3" readonly="readonly" ng-model="form.kueBlock3"></td>
+                            <td><input type="text" class="form-control" id="avgBlock3" readonly="readonly" ng-model="form.avgBlock3"></td>
+                            <td><input type="text" class="form-control" id="diffNomBlock3" readonly="readonly" ng-model="form.diffNomBlock3"></td>
+                            <td><input type="text" class="form-control" id="diffPersenBlock3" readonly="readonly" ng-model="form.diffPersenBlock3"></td>
+                            <td><input type="text" class="form-control" id="BlockPerCom3" readonly="readonly" ng-model="form.BlockPerCom3"></td>    
+                          </tr>
+                          <tr>
+                            <td><input type="text" class="form-control" id="diffBlock2" ng-model="form.diffBlock2"></td>
+                            <td><input type="text" class="form-control" id="countBlock2" readonly="readonly" ng-model="form.getCountBlock2"></td>
+                            <td>3</td>
+                            <td>2</td>
+                            <td><input type="text" class="form-control" id="upperBlock2" readonly="readonly" ng-model="form.upperBlock2"></td>
+                            <td><input type="text" class="form-control" id="bobot2" readonly="readonly" ng-model="form.bobot2"></td>
+                            <td><input type="text" class="form-control" id="persenBlock2" readonly="readonly" ng-model="form.persenBlock2"></td>
+                            <td><input type="text" class="form-control" id="persenBlockKar2" readonly="readonly" ng-model="form.persenBlockKar2"></td>
+                            <td><input type="text" class="form-control" id="kueBlock2" readonly="readonly" ng-model="form.kueBlock2"></td>
+                            <td><input type="text" class="form-control" id="avgBlock2" readonly="readonly" ng-model="form.avgBlock2"></td>
+                            <td><input type="text" class="form-control" id="diffNomBlock2" readonly="readonly" ng-model="form.diffNomBlock2"></td>
+                            <td><input type="text" class="form-control" id="diffPersenBlock2" readonly="readonly" ng-model="form.diffPersenBlock2"></td>
+                            <td><input type="text" class="form-control" id="BlockPerCom2" readonly="readonly" ng-model="form.BlockPerCom2"></td> 
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <a ng-click="saveStep2(form)" class="btn btn-primary">Next</a>
+
+                    </div>
+                  <!-- </div> -->
+                </div>
+              </div>
+              <div ng-show="form_step3 == 'show'">
+                <h2 class="StepTitle">Step 3</h2>
+                <p>
+                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+              </div>
+              <div ng-show="form_step4 == 'show'">
+                <h2 class="StepTitle">Step 4</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+              </div>
+
+              <div ng-show="form_step5 == 'show'">
+                <h2 class="StepTitle">Step 5</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+              </div>
+
+              <div ng-show="form_step6 == 'show'">
+                <h2 class="StepTitle">Step 6</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+              </div>
+
+            </div>
+            <!-- End SmartWizard Content -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    $('#nilai1').maskMoney({prefix: 'Rp. ', 
+                              thousands: '.', 
+                              decimal: ',',
+                              precision: 0
+                            });
+          $("#nilai1").keyup(function() {
+            var clone = $(this).val();
+            var cloned = clone.replace(/[A-Za-z$. ,-]/g, "")
+            $("#nilai2").val(cloned);
+          });
+
+     $('#rtg1').maskMoney({prefix: 'Rp. ', 
+                              thousands: '.', 
+                              decimal: ',',
+                              precision: 0
+                            });
+          $("#rtg1").keyup(function() {
+            var clone = $(this).val();
+            var cloned = clone.replace(/[A-Za-z$. ,-]/g, "")
+            $("#rtg2").val(cloned);
+          });
+
+     $('#qcc1').maskMoney({prefix: 'Rp. ', 
+                            thousands: '.', 
+                            decimal: ',',
+                            precision: 0
+                          });
+        $("#qcc1").keyup(function() {
+          var clone = $(this).val();
+          var cloned = clone.replace(/[A-Za-z$. ,-]/g, "")
+          $("#qcc2").val(cloned);
+        });
+
+     $('#valuta1').maskMoney({prefix: 'Rp. ', 
+                            thousands: '.', 
+                            decimal: ',',
+                            precision: 0
+                          });
+        $("#valuta1").keyup(function() {
+          var clone = $(this).val();
+          var cloned = clone.replace(/[A-Za-z$. ,-]/g, "")
+          $("#valuta2").val(cloned);
+        });
+    </script>

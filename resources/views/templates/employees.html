@@ -1,0 +1,346 @@
+<div class="">
+<div class="page-title">
+
+
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h3>Employee List</h3>
+        </div>
+        <div class="pull-right" style="padding-top:30px">
+            <div class="box-tools" style="display:inline-table">
+              <div class="input-group">
+                  <input type="text" class="form-control input-sm ng-valid ng-dirty" placeholder="Ketik Nama Karyawan" ng-change="searchDB()" ng-model="searchText" name="table_search" title="" tooltip="" data-original-title="Min character length is 3">
+                  <span class="input-group-addon">Cari Nama Otomatis</span>
+              </div>
+            </div>
+            
+        </div>
+  </div>  
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Employee Table</h2>
+        &nbsp&nbsp&nbsp&nbsp&nbsp
+        <button class="btn btn-success" ng-click="tambah_employee()" data-toggle="modal" data-target="#create-user">Tambah Employee Baru</button>
+
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+                <th>No</th>
+                <th>Employee NIK</th>
+                <th>Employee Name</th>
+                <th>Employee Pos</th>
+                <th>Employee Group</th>
+                <th>Employee Shift</th>
+                <th>Employee Block</th>
+                <th>Employee Slice</th>
+                <th>Employee Div</th>
+                <th>Employee Grade</th>
+                <th>Employee Status</th>
+                <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr dir-paginate="value in data | itemsPerPage:10" total-items="totalItems">
+                <td>{{ current_page + $index + 1 }}</td>
+                <td>{{ value.EMPLOYEE_NIK }}</td>
+                <td>{{ value.EMPLOYEE_NAME }}</td>
+                <td>{{ value.POSITION_NAME }}</td>
+                <td>{{ value.GROUP_NAME }}</td>
+                <td>{{ value.SHIFT_NAME }}</td>
+                <td>{{ value.BLOCK_NAME }}</td>
+                <td>{{ value.EMPLOYEE_SLICE }} - {{ value.SLICE_NAME }}</td>
+                <td>{{ value.DIVISION_NAME }}</td>
+                <td>{{ value.EMPLOYEE_GRADE }}</td>
+                <td>
+                  <!-- {{ value.EMPLOYEE_STATUS }} -->
+                  <span ng-if="value.EMPLOYEE_STATUS == 1" class="label label-success">AKTIF</span>
+                  <span ng-if="value.EMPLOYEE_STATUS == 2" class="label label-warning">PENSIUN</span>
+                  <span ng-if="value.EMPLOYEE_STATUS == 3" class="label label-danger">RESIGN</span>
+                </td>
+
+                <td>
+                    <button data-toggle="modal" class="btn btn-info btn-xs" ng-click="edit(value.EMPLOYEE_NIK)" data-target="#edit-data"><i class="fa fa-pencil"></i></button>
+                    <button data-toggle="tooltip" class="btn btn-danger btn-xs" ng-click="remove(value,$index)"><i class="fa fa-close"></i></button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+        <dir-pagination-controls class="pull-right" on-page-change="pageChanged(newPageNumber)" template-url="templates/dirPagination.html" ></dir-pagination-controls>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  
+</div>
+<!-- Create Modal -->
+<div class="modal fade" id="create-user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" name="addItem" role="form" ng-submit="saveAdd()">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Tambah Pegawai</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>NIK Pegawai : </strong>
+                            <div class="form-group">
+                                <input ng-model="form.EMPLOYEE_NIK" type="text" placeholder="NIK Pegawai" name="group" class="form-control" required />
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Nama Pegawai : </strong>
+                            <div class="form-group">
+                                <input ng-model="form.EMPLOYEE_NAME" type="text" placeholder="Nama Pegawai" name="group" class="form-control" required />
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Posisi Pegawai : </strong>
+                            <div class="form-group">
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_POS" required="true">
+                                      <option  value="">--Pilih Posisi Pegawai--</option>
+                                      <option data-ng-repeat="v in getPosisi" value="{{v.POSITION_ID}}">{{ v.POSITION_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Divisi Pegawai : </strong>
+                            <div class="form-group">
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_DIV" required="true">
+                                      <option  value="">--Pilih Divisi Pegawai--</option>
+                                      <option data-ng-repeat="v in getDivisi" value="{{v.DIVISION_ID}}">{{ v.DIVISION_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div>                       
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Group Pegawai : </strong>
+                            <div class="form-group">
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_GROUP" required="true">
+                                      <option  value="">--Pilih Group Pegawai--</option>
+                                      <option data-ng-repeat="v in getGroup" value="{{v.GROUP_ID}}">{{ v.GROUP_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Shift Pegawai : </strong>
+                            <div class="form-group">
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_SHIFT" required="true">
+                                      <option  value="">--Pilih Shift Pegawai--</option>
+                                      <option data-ng-repeat="v in getShift" value="{{v.SHIFT_ID}}">{{ v.SHIFT_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Block Pegawai : </strong>
+                            <div class="form-group">
+                                <!-- <select class="form-control select2" ng-model="form.EMPLOYEE_BLOCK" ng-change="showGrade(form.EMPLOYEE_BLOCK,form.EMPLOYEE_SHIFT)" required="true"> -->
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_BLOCK" required="true">
+                                      <option  value="">--Pilih Block Pegawai--</option>
+                                      <option data-ng-repeat="v in getBlock" value="{{v.BLOCK_ID}}">{{ v.BLOCK_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Grade Pegawai : </strong>
+                            <div class="form-group">
+                                <!-- <select class="form-control select2" ng-model="form.EMPLOYEE_GRADE" ng-change="checkSlice(form.EMPLOYEE_GRADE,form.EMPLOYEE_BLOCK,form.EMPLOYEE_SHIFT)" required="true"> -->
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_GRADE" required="true">
+                                      <option value="">--Pilih Grade Pegawai--</option>                                      
+                                      <!-- <option data-ng-repeat="v in getGrade" value="{{v.GRADE}}">{{ v.GRADE }}</option> -->
+                                      <option value="1">1</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                      <option value="5">5</option>
+                                      <option value="6">6</option>
+                                      <option value="7">7</option>
+                                      <option value="8">8</option>
+                                      <option value="9">9</option>
+                                      <option value="10">10</option>
+                                      <option value="11">11</option>
+                                      <option value="12">12</option>
+                                      <option value="13">13</option>
+                                      <option value="14">14</option>
+                                      <option value="15">15</option>
+                                      <option value="16">16</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Slice Pegawai : </strong>
+                            <div class="form-group">                                
+                                <!-- <input type="hidden" class="form-control" ng-model="form.EMPLOYEE_SLICE" required="true">
+                                <input type="text" class="form-control" ng-model="form.EMPLOYEE_SLICE_KETERANGAN" required="true" readonly=""> -->
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_SLICE" required="true">
+                                  <option value="">--Pilih Slice Pegawai--</option>
+                                  <option data-ng-repeat="v in getSlice" value="{{v.SLICE_ID}}">{{ v.SLICE_ID }} - {{ v.SLICE_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Status Pegawai : </strong>
+                            <div class="form-group">                                                                
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_STATUS" required="true">
+                                  <option value="">--Pilih Status Pegawai--</option>
+                                  <option value="1">Aktif</option>
+                                  <option value="4">Tidak Aktif</option>
+                                  <option value="2">Pensiun</option>
+                                  <option value="3">Resign</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-disabled="addItem.$invalid" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="edit-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" name="editItem" role="form" ng-submit="saveEdit()">
+                
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Pegawai</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>NIK Pegawai : </strong>
+                            <div class="form-group">
+                                <input ng-model="form.EMPLOYEE_NIK" type="text" placeholder="NIK Pegawai" name="group" class="form-control" required />
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Nama Pegawai : </strong>
+                            <div class="form-group">
+                                <input ng-model="form.EMPLOYEE_NAME" type="text" placeholder="Nama Pegawai" name="group" class="form-control" required />
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Posisi Pegawai : </strong>
+                            <div class="form-group">
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_POS" required="true">
+                                      <option  value="">--Pilih Posisi Pegawai--</option>
+                                      <option data-ng-repeat="v in getPosisi" value="{{v.POSITION_ID}}">{{ v.POSITION_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Divisi Pegawai : </strong>
+                            <div class="form-group">
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_DIV" required="true">
+                                      <option  value="">--Pilih Divisi Pegawai--</option>
+                                      <option data-ng-repeat="v in getDivisi" value="{{v.DIVISION_ID}}">{{ v.DIVISION_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div>    
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Group Pegawai : </strong>
+                            <div class="form-group">
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_GROUP" required="true">
+                                      <option  value="">--Pilih Group Pegawai--</option>
+                                      <option data-ng-repeat="v in getGroup" value="{{v.GROUP_ID}}">{{ v.GROUP_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Shift Pegawai : </strong>
+                            <div class="form-group">
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_SHIFT" required="true">
+                                      <option  value="">--Pilih Shift Pegawai--</option>
+                                      <option data-ng-repeat="v in getShift" value="{{v.SHIFT_ID}}">{{ v.SHIFT_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Block Pegawai : </strong>
+                            <div class="form-group">
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_BLOCK" ng-change="showGrade(form.EMPLOYEE_BLOCK,form.EMPLOYEE_SHIFT)" required="true">
+                                      <option  value="">--Pilih Block Pegawai--</option>
+                                      <option data-ng-repeat="v in getBlock" value="{{v.BLOCK_ID}}">{{ v.BLOCK_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Grade Pegawai : </strong>
+                            <div class="form-group">
+                                <!-- <input type="text" class="form-control" ng-model="form.EMPLOYEE_GRADE" required="true"> -->
+                                <!-- <select class="form-control select2" ng-model="form.EMPLOYEE_GRADE" ng-change="checkSlice(form.EMPLOYEE_GRADE,form.EMPLOYEE_BLOCK,form.EMPLOYEE_SHIFT)" required="true"> -->
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_GRADE" required="true">
+                                      <option value="">--Pilih Grade Pegawai--</option>
+                                      <!-- <option data-ng-repeat="v in getGrade" value="{{v.GRADE}}">{{ v.GRADE }}</option> -->
+                                      <option value="1">1</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                      <option value="5">5</option>
+                                      <option value="6">6</option>
+                                      <option value="7">7</option>
+                                      <option value="8">8</option>
+                                      <option value="9">9</option>
+                                      <option value="10">10</option>
+                                      <option value="11">11</option>
+                                      <option value="12">12</option>
+                                      <option value="13">13</option>
+                                      <option value="14">14</option>
+                                      <option value="15">15</option>
+                                      <option value="16">16</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Slice Pegawai : </strong>
+                            <div class="form-group">                                
+                                <!-- <input type="hidden" class="form-control" ng-model="form.EMPLOYEE_SLICE" required="true">
+                                <input type="text" class="form-control" ng-model="form.EMPLOYEE_SLICE_KETERANGAN" required="true" readonly=""> -->
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_SLICE" required="true">
+                                  <option value="">--Pilih Slice Pegawai--</option>
+                                  <option data-ng-repeat="v in getSlice" value="{{v.SLICE_ID}}">{{ v.SLICE_ID }} - {{ v.SLICE_NAME }}</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <strong>Status Pegawai : </strong>
+                            <div class="form-group">                                                                
+                                <select class="form-control select2" ng-model="form.EMPLOYEE_STATUS" required="true">
+                                  <option value="">--Pilih Status Pegawai--</option>
+                                  <option value="1">Aktif</option>
+                                  <option value="4">Tidak AKtif</option>
+                                  <option value="2">Pensiun</option>
+                                  <option value="3">Resign</option>
+                                </select>
+                            </div>                          
+                        </div> 
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" ng-disabled="editItem.$invalid" class="btn btn-primary create-crud">Simpan</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
